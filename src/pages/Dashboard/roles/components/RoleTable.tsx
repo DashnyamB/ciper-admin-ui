@@ -1,6 +1,6 @@
 import { DataTable } from '@/components/DataTable';
 import { columns } from './columns';
-import { useRole, type Role } from '@/hooks/useRole';
+import { useRole } from '@/hooks/useRole';
 import { useQuery } from '@tanstack/react-query';
 
 export const RoleTable = () => {
