@@ -4,8 +4,8 @@ import {
   useState,
   useEffect,
   type ReactNode,
-} from "react";
-import { API_ENDPOINTS, AUTH_TOKEN_KEY } from "../config/api";
+} from 'react';
+import { API_ENDPOINTS, AUTH_TOKEN_KEY } from '../config/api';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -37,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         try {
           // Verify token and get user data
           const response = await fetch(API_ENDPOINTS.auth.me, {
-            method: "POST",
+            method: 'POST',
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -52,7 +52,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             localStorage.removeItem(AUTH_TOKEN_KEY);
           }
         } catch (error) {
-          console.error("Failed to restore auth state:", error);
+          console.error('Failed to restore auth state:', error);
           localStorage.removeItem(AUTH_TOKEN_KEY);
         }
       }
@@ -65,25 +65,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signin = async (email: string, password: string) => {
     try {
       const response = await fetch(API_ENDPOINTS.auth.login, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {
-        throw new Error("Authentication failed");
+        throw new Error('Authentication failed');
       }
 
       const userData = await response.json();
-      setUser(userData);
+      setUser(userData.user);
       setIsAuthenticated(true);
 
       // Store token in localStorage
       localStorage.setItem(AUTH_TOKEN_KEY, userData.token);
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error('Login failed:', error);
       throw error;
     }
   };
@@ -92,7 +92,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       // Call logout endpoint if needed
       await fetch(API_ENDPOINTS.auth.logout, {
-        method: "POST",
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${localStorage.getItem(AUTH_TOKEN_KEY)}`,
         },
@@ -119,7 +119,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 }

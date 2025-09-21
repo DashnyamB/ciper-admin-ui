@@ -1,15 +1,15 @@
-import type { FunctionComponent } from "react";
-import { useForm } from "react-hook-form";
-import { useAuth } from "../providers/AuthProvider";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import type { FunctionComponent } from 'react';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../providers/AuthProvider';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 
 interface LoginFormType {
   email: string;
@@ -24,7 +24,7 @@ const LoginPage: FunctionComponent = () => {
     handleSubmit,
     setError,
   } = useForm<LoginFormType>({
-    reValidateMode: "onChange",
+    reValidateMode: 'onChange',
   });
 
   const handleLogin = async (data: LoginFormType) => {
@@ -32,9 +32,9 @@ const LoginPage: FunctionComponent = () => {
       console.log(data);
       await signin(data.email, data.password);
     } catch (error) {
-      setError("root", {
-        type: "manual",
-        message: "Invalid email or password",
+      setError('root', {
+        type: 'manual',
+        message: 'Invalid email or password',
       });
     }
   };
@@ -48,12 +48,12 @@ const LoginPage: FunctionComponent = () => {
         <CardContent>
           <div className="flex flex-col gap-2">
             <Input
-              {...register("email", { required: true })}
+              {...register('email', { required: true })}
               type="text"
               placeholder="Email"
             />
             <Input
-              {...register("password", { required: true })}
+              {...register('password', { required: true })}
               type="password"
               placeholder="Password"
             />

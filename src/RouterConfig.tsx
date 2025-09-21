@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import type { JSX } from "react";
-import { Dashboard } from "./pages/Dashboard";
-import { useAuth } from "./providers/AuthProvider";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import type { JSX } from 'react';
+import { Dashboard } from './pages/Dashboard/Dashboard';
+import { useAuth } from './providers/AuthProvider';
 
 function ProtectedRoute({ children }: { children: JSX.Element }) {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/admin" replace />;
 }
 
-const BASE_PATH = "/admin";
+const BASE_PATH = '/admin';
 
 export default function RouterConfig() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -30,9 +30,10 @@ export default function RouterConfig() {
               <LoginPage />
             )
           }
+          caseSensitive={false}
         />
         <Route
-          path={`${BASE_PATH}/dashboard`}
+          path={`${BASE_PATH}/dashboard/*`}
           element={
             <ProtectedRoute>
               <Dashboard />

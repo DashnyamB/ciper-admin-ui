@@ -1,11 +1,15 @@
-import RouterConfig from "./RouterConfig";
-import { AuthProvider } from "./providers/AuthProvider";
+import RouterConfig from './RouterConfig';
+import { AuthProvider } from './providers/AuthProvider';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
+  const queryClient = new QueryClient();
   return (
-    <AuthProvider>
-      <RouterConfig />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterConfig />
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 
