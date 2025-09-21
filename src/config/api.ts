@@ -22,9 +22,9 @@ export const API_ENDPOINTS = {
     delete: (id: string) => `${API_BASE_URL}/admin/roles/${id}`,
   },
   apiKey: {
-    list: `${API_BASE_URL}/admin/apikeys`,
-    create: `${API_BASE_URL}/admin/apikeys`,
-    delete: (id: string) => `${API_BASE_URL}/admin/apikeys/${id}`,
+    list: `${API_BASE_URL}/admin/api-keys`,
+    create: `${API_BASE_URL}/admin/api-keys`,
+    delete: (id: string) => `${API_BASE_URL}/admin/api-keys/${id}`,
   },
   // Add other endpoint categories as needed
 } as const;

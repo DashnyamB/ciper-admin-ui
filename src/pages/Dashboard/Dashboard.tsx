@@ -2,6 +2,7 @@ import { AppSidebar } from '@/components/AppSidebar';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { Route, Routes } from 'react-router-dom';
 import { RolePage } from './roles';
+import { APIKeysPage } from './api-keys/APIKeysPage';
 
 export const Dashboard = () => {
   return (
@@ -11,7 +12,7 @@ export const Dashboard = () => {
         <main className="flex-1 p-4">
           <Routes>
             <Route path="roles/*" element={<RolePage />} />
-            <Route path="permissions/*" element />
+            <Route path="api-keys/*" element={<APIKeysPage />} />
           </Routes>
         </main>
       </div>
